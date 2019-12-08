@@ -12,7 +12,7 @@ const Header =({currentUser})=>(
         <div className="options">
             <Link className="option" to ="/shop">SHOP </Link>
             <Link className="option" to ="/contact">Contact </Link>
-            {
+            {   
                 currentUser ? 
                 <div  className="option" onClick={()=>auth.signOut()}>Sign Out</div>
                 :
@@ -20,6 +20,7 @@ const Header =({currentUser})=>(
               
             }
             {console.log(currentUser)}
+            
         </div>
     </div>
 
