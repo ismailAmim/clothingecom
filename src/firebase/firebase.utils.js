@@ -17,7 +17,8 @@ const config={
   };
 
 export const createUserProfileDocument = async (userAuth, aditionalData)=>{
-
+// Create a document in firestore for a new user who haven't 
+// stored in the database firestore
     if(!userAuth) return;
 
     /* const userRef  = firestore.doc('users/3232333');
@@ -26,13 +27,17 @@ export const createUserProfileDocument = async (userAuth, aditionalData)=>{
     //console.log(firestore.doc('users/425454545'));
 
     const userRef = firestore.doc(`users/${userAuth.uid}`);
+     //return the user refrence : the exact user object reference in firestore 
     const snapShot =await userRef.get();
+    // get() return the snapshot or the object with relative reference
     if (!snapShot.exists) 
-    {
+    {   // if the object doesn't exist,  
         const {displayName, email} = userAuth;
         const createdAt = new Date();   
-
         try {
+            // await for asynchronous  function, talking with api
+            // trying to create new document with new refrence
+ 
             await userRef.set ({
                 displayName,
                 email,
@@ -58,7 +63,7 @@ export const createUserProfileDocument = async (userAuth, aditionalData)=>{
 
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({prompt: 'select_account'});
+  
   export const signInWithGoogle =()=>auth.signInWithPopup(provider);
-
 
   export default firebase;

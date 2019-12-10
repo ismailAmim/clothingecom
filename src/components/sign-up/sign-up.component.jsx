@@ -8,8 +8,8 @@ import {auth,createUserProfileDocument} from "../../firebase/firebase.utils";
 
 class SignUp extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state ={
             displayName    :'',
             email          :'',
@@ -24,7 +24,7 @@ class SignUp extends React.Component {
                      email,
                   password,
            confirmPassword
-        }= this.state;
+                          }= this.state;
          
         if (password !== confirmPassword) {
              alert("passwords don't match");
@@ -32,10 +32,14 @@ class SignUp extends React.Component {
            
         }
         try {
+            //await for authenticating user with email and password firebase function 
+            // create a new user account
             const {user}= await auth.createUserWithEmailAndPassword(email,password);
-
+            //the await for creating new user object document in firestore
+            // create ab document with user object and display name
             await createUserProfileDocument(user,{displayName});
-
+              
+            // if ok we will clear the form
             this.setState ({
                 displayName    :'',
                 email          :'',
@@ -44,7 +48,7 @@ class SignUp extends React.Component {
 
             })
         }catch (error){
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -60,9 +64,9 @@ class SignUp extends React.Component {
         return(
 
            <div className="sign-up">
-               <h2 className="title"></h2>
-               <span></span>
-               <form>
+               <h2 className="title">I do not have an account</h2>
+               <span>Sign up with your email and password</span>
+               <form className ="sign-up-form" onSubmit={this.handleSubmit}>
                    <FormInput type    ="text"
                               name    ="displayName"
                               value   ={displayName} 
