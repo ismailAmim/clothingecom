@@ -111,7 +111,7 @@ class  App extends React.Component {
           <Route exact path="/" component={HomePage}/> 
           <Route exact path="/shop" component={ShopPage}/> 
           <Route exact path="/signin" /*component={SignInAndSignUpPage}*/ 
-           render={()=>this.currentUser ? (<Redirect to ='/'/>) :<SignInAndSignUpPage/>}/> 
+           render={()=>this.props.currentUser ? (<Redirect to ='/'/>) :<SignInAndSignUpPage/>}/> 
           </Switch>
         </div>);
         // Route exact to get the exact path not relative one
