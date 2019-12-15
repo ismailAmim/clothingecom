@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch,Route} from "react-router-dom";
+import {Switch,Route,Redirect} from "react-router-dom";
 import './App.css';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component'; 
@@ -110,16 +110,21 @@ class  App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage}/> 
           <Route exact path="/shop" component={ShopPage}/> 
-          <Route exact path="/signin" component={SignInAndSignUpPage}/> 
-        </Switch>
+          <Route exact path="/signin" /*component={SignInAndSignUpPage}*/ 
+           render={()=>this.currentUser ? (<Redirect to ='/'/>) :<SignInAndSignUpPage/>}/> 
+          </Switch>
         </div>);
         // Route exact to get the exact path not relative one
         // Switch to route for the only this one of two routes
-}
+        // Redirect to home if the user was signed in
+      }
 }
 
+const mapStateToProps =({user})=> ({
+  currentUser: user.currentUser
+});
 const mapDispatchToProps =dispatch=>({
   setCurrentUser: user=>dispatch(setCurrentUser(user))
 });
 
-export default connect (null,mapDispatchToProps)(App);
+export default connect (mapStateToProps,mapDispatchToProps)(App);
