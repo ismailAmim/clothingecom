@@ -1,6 +1,6 @@
-import {combineReducer} from "react-redux";
+import {combineReducers} from "redux";
 import userReducer from './user/user.reducer';
 
-export default rootReducer =combineReducer ({
+export default combineReducers ({
     user : userReducer // change each state by their reducer
 });

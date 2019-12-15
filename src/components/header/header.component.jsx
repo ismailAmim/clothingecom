@@ -21,7 +21,7 @@ const Header =({currentUser})=>(
                 <Link className="option" to='/signin'>Sign In</Link>
               
             }
-            {console.log(currentUser)}
+            {/*console.log(currentUser)*/}
             
         </div>
     </div>
