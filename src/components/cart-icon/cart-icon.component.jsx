@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {toggleCartHidden}     from "../../redux/cart/cart.actions"; 
+import {createStructuredSelector} from "reselect";
 import {selectCartItemsCount} from "../../redux/cart/cart.selectors";
 
 import {ReactComponent as ShoppingIcon} from "../../assets/shopping-bag.svg";
@@ -27,8 +28,8 @@ const mapDispatchToProps = dispatch => ({
     ); */
 
 // changed , pass the state using the reslect selector -- state --    
-const mapStateToProps = state=>({
-        itemCount : selectCartItemsCount(state) }
+const mapStateToProps =createStructuredSelector({
+        itemCount : selectCartItemsCount }
         );    
     // item Count get the sum of accumalated quantities
     // by the reduce function

@@ -4,8 +4,13 @@ import {auth} from "../../firebase/firebase.utils";
 import {ReactComponent as Logo}   from "../../assets/crown.svg";
 import './header.styles.scss';
 import {connect} from "react-redux";
+import {createStructuredSelector} from 'reselect';
+
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from  "../cart-dropdown/cart-dropdown.component";
+
+import {selectCurrentUser} from "../../redux/user/user.selectors";
+import {selectCartHidden} from "../../redux/cart/cart.selectors";
 // pass the state elements values to the header comonent 
 const Header =({currentUser,hidden})=>(
     <div className="header">
@@ -35,6 +40,14 @@ const Header =({currentUser,hidden})=>(
 // destruct state using {}
 // state to  { element1:{val1 },...}
 // just pass the current state element values
-const mapStateToProps = ({user:{currentUser},cart:{hidden} }) => ({currentUser,hidden});
+
+/* const mapStateToProps = ({user:{currentUser},cart:{hidden} }) =>
+                        ({currentUser,hidden}); */
+
+// create structuredSelector reselect function pass selectors 
+// to the top level state
+const mapStateToProps = createStructuredSelector( 
+                        { currentUser:selectCurrentUser,
+                          hidden     :selectCartHidden});
 
 export default connect(mapStateToProps)(Header);
