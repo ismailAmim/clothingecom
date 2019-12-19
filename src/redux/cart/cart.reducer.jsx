@@ -1,5 +1,5 @@
 import cartActionTypes from "./cart.types";
-import { addItemToCart} from './cart.utils';
+import { addItemToCart,removeItemChe} from './cart.utils';
 
 const INITIIAL_STATE ={
     hidden:true, 
@@ -17,6 +17,15 @@ switch(action.type)
         return { ...state,
                 cartItems: addItemToCart(state.cartItems ,
                                   action.payload)
+                };
+    case cartActionTypes.CLEAR_ITEM :
+        return { ...state,
+                cartItems: state.cartItems.filter(cartItem =>cartItem.id!== action.payload.id)
+                };
+    case cartActionTypes.REMOVE_ITEM :
+        return { ...state,
+                cartItems: removeItemChe(state.cartItems,
+                                          action.payload)
                 };
     default : 
         return state;
