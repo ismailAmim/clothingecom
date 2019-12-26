@@ -32,7 +32,9 @@ const CartDropdown = ({cartItems, history,dispatch}) => (
 /* const mapStateToProps =({cart:{cartItems}})=> 
          ({cartItems}) */
    const mapStateToProps =createStructuredSelector(
-       {cartItems: selectCartItems});
+          {
+              cartItems: selectCartItems
+          });
 
 // withRouter takes components as argument receive props like history cache      
 export default withRouter(connect (mapStateToProps)(CartDropdown));
