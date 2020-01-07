@@ -42,6 +42,7 @@ const mapStateToProps =createStructuredSelector({
     cartItems: selectCartItems,
     total    :selectCartTotal
 });
+// checkout component
 
 export default connect (mapStateToProps)(checkOutPage);
 
